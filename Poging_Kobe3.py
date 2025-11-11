@@ -150,7 +150,6 @@ model_0 = FashionMNISTModelV0( #TODO werkelijk (480x640)
 )
 model_0.to("cpu") # keep model on CPU to begin with
 
-#TODO verder lezen
 import requests
 from pathlib import Path 
 
@@ -275,4 +274,4 @@ def eval_model(model: torch.nn.Module,
 model_0_results = eval_model(model=model_0, data_loader=test_dataloader,
     loss_fn=loss_fn, accuracy_fn=accuracy_fn
 )
-model_0_results
+print(model_0_results)

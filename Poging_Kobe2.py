@@ -15,6 +15,7 @@ from torchvision import transforms
 from PIL import Image
 import os
 
+#Copilot
 class CustomImageDataset(Dataset):
     def __init__(self, img_dir, transform=None):
         self.img_dir = img_dir
@@ -39,14 +40,15 @@ class CustomImageDataset(Dataset):
 
     def __getitem__(self, idx):
         img_path = os.path.join(self.img_dir, self.img_files[idx])
-        image = Image.open(img_path).convert('L')  # grayscale
+        image = Image.open(img_path).convert('L')  # grayscale anders 'RGB' voor kleur
         if self.transform:
             image = self.transform(image)
         label_idx = self.labels[idx]
         return image, label_idx  # Returns image and integer label index
 
 # Define transforms
-transform = transforms.Compose([
+transform = transforms.Compose([#TODO werkelijk (480x640)
+    transforms.Resize((50, 50)),
     transforms.ToTensor(),
 ])
 
@@ -81,89 +83,3 @@ while (i < rows * cols and i < len(dataset)):
     plt.axis(False)
     i = i + 1
 plt.show()
-
-#batches maken
-from torch.utils.data import DataLoader
-
-# Setup the batch size hyperparameter
-BATCH_SIZE = 32
-
-# Turn datasets into iterables (batches)
-train_dataloader = DataLoader(dataset, # dataset to turn into iterable
-    batch_size=BATCH_SIZE, # how many samples per batch? 
-    shuffle=True # shuffle data every epoch?
-)
-
-test_dataloader = DataLoader(dataset,
-    batch_size=BATCH_SIZE,
-    shuffle=False # don't necessarily have to shuffle the testing data
-)
-
-# Let's check out what we've created
-print(f"Dataloaders: {train_dataloader, test_dataloader}") 
-print(f"Length of train dataloader: {len(train_dataloader)} batches of {BATCH_SIZE}")
-print(f"Length of test dataloader: {len(test_dataloader)} batches of {BATCH_SIZE}")
-
-# Check out what's inside the training dataloader
-train_features_batch, train_labels_batch = next(iter(train_dataloader))
-print(train_features_batch.shape)
-
-#verstaanbaar maken
-# Create a flatten layer
-flatten_model = nn.Flatten() # all nn modules function as a model (can do a forward pass)
-
-# Get a single sample
-x = train_features_batch[0]
-
-# Flatten the sample
-output = flatten_model(x) # perform forward pass
-
-# Print out what happened
-print(f"Shape before flattening: {x.shape} -> [color_channels, height, width]")
-print(f"Shape after flattening: {output.shape} -> [color_channels, height*width]")
-
-# Try uncommenting below and see what happens
-#print(x)
-#print(output)
-
-from torch import nn
-class FashionMNISTModelV0(nn.Module):
-    def __init__(self, input_shape: int, hidden_units: int, output_shape: int):
-        super().__init__()
-        self.layer_stack = nn.Sequential(
-            nn.Flatten(), # neural networks like their inputs in vector form
-            nn.Linear(in_features=input_shape, out_features=hidden_units), # in_features = number of features in a data sample (784 pixels)
-            nn.Linear(in_features=hidden_units, out_features=output_shape)
-        )
-    
-    def forward(self, x):
-        return self.layer_stack(x)
-    
-torch.manual_seed(42)
-
-# Need to setup model with input parameters
-model_0 = FashionMNISTModelV0(input_shape=784, # one for every pixel (28x28)
-    hidden_units=10, # how many units in the hidden layer
-    output_shape=len(dataset.class_names) # one for every class
-)
-model_0.to("cpu") # keep model on CPU to begin with
-
-import requests
-from pathlib import Path 
-
-# Download helper functions from Learn PyTorch repo (if not already downloaded)
-if Path("helper_functions.py").is_file():
-  print("helper_functions.py already exists, skipping download")
-else:
-  print("Downloading helper_functions.py")
-  # Note: you need the "raw" GitHub URL for this to work
-  request = requests.get("https://raw.githubusercontent.com/mrdbourke/pytorch-deep-learning/main/helper_functions.py")
-  with open("helper_functions.py", "wb") as f:
-    f.write(request.content)
-
-# Import accuracy metric
-from helper_functions import accuracy_fn # Note: could also use torchmetrics.Accuracy(task = 'multiclass', num_classes=len(class_names)).to(device)
-
-# Setup loss function and optimizer
-loss_fn = nn.CrossEntropyLoss() # this is also called "criterion"/"cost function" in some places
-optimizer = torch.optim.SGD(params=model_0.parameters(), lr=0.1)
