@@ -79,7 +79,7 @@ class CustomImageDataset(Dataset):
         self.img_files = [f for f in Path(img_dir).glob("*.jpg")]
         
         # Extract class labels from filenames (e.g. "img_2_..." -> "img_2")
-        def extract_class(fname):
+        def extract_class(fname): #TODO Herschrijven zodat dit uit labels map komt
             m = re.search(r'(img_\d+)', fname.name)
             return m.group(1) if m else 'unknown'
         
