@@ -14,6 +14,8 @@ from torchvision import datasets, transforms
 from torch.utils.data import Dataset
 import re
 
+import pathlib
+
 #print functie
 def print_img(image):
     plt.figure(figsize=(8, 8))
@@ -60,7 +62,6 @@ image_class = random_image_path.name #TODO juiste classificatie vinden
 # 4. Open image
 img = Image.open(random_image_path)
 
-
 transform = transforms.Compose([
     transforms.ToTensor(),
 ])
@@ -77,7 +78,7 @@ class CustomImageDataset(Dataset):
         self.img_dir = data_dir / "images"
         self.transform = transform
         self.img_files = sorted([f for f in Path(data_dir / "images").glob("*.jpg")])
-        
+
         # Extract class labels from corresponding .txt files
         def extract_class(img_file):
             # Get the base name without extension (e.g., "img_2_xyz.jpg" -> "img_2_xyz")
@@ -115,6 +116,7 @@ class CustomImageDataset(Dataset):
 train_data = CustomImageDataset(train_dir, transform=transform)
 test_data = CustomImageDataset(test_dir, transform=transform)
 
-print(f"Train data: {len(train_data)} images, Classes: {train_data.class_names}")
-print(f"Test data: {len(test_data)} images")
-print_img(train_data)
+print(f"Train data: {len(train_data)} images, Classes: {train_data.class_to_idx}")
+print(f"Test data: {len(test_data)} images, Classes: {test_data.class_to_idx}")
+print(f"Train classes: {train_data.labels}")
+print(f"Test classes: {test_data.labels}")
