@@ -45,8 +45,8 @@ else:
     print("NO directory found")
 
 # Setup train and testing paths
-train_dir = data_path / "train\\images"
-test_dir = data_path / "test\\images"
+train_dir = data_path / "train"
+test_dir = data_path / "test"
 
 print(train_dir, test_dir)
 
@@ -73,18 +73,29 @@ dataTransform = transform(img)
 #TODO copilot
 # Vervang de ImageFolder deel met:
 class CustomImageDataset(Dataset):
-    def __init__(self, img_dir, transform=None):
-        self.img_dir = img_dir
+    def __init__(self, data_dir, transform=None):
+        self.img_dir = data_dir / "images"
         self.transform = transform
-        self.img_files = [f for f in Path(img_dir).glob("*.jpg")]
+        self.img_files = sorted([f for f in Path(data_dir / "images").glob("*.jpg")])
         
-        # Extract class labels from filenames (e.g. "img_2_..." -> "img_2")
-        def extract_class(fname): #TODO Herschrijven zodat dit uit labels map komt
-            m = re.search(r'(img_\d+)', fname.name)
-            return m.group(1) if m else 'unknown'
+        # Extract class labels from corresponding .txt files
+        def extract_class(img_file):
+            # Get the base name without extension (e.g., "img_2_xyz.jpg" -> "img_2_xyz")
+            base_name = img_file.stem
+            # Look for corresponding .txt file (e.g., "img_2_xyz.txt")
+            txt_file = data_dir / "labels" / f"{base_name}.txt"
+            
+            if txt_file.exists():
+                with open(txt_file, 'r') as f:
+                    class_label = f.read(1)
+                    return class_label
+            else:
+                # Fallback: extract from filename if no .txt file
+                m = re.search(r'(img_\d+)', base_name)
+                return m.group(1) if m else 'unknown'
         
         self._labels_str = [extract_class(f) for f in self.img_files]
-        unique = sorted(set(self._labels_str), key=lambda x: int(x.split('_')[1]) if x.startswith('img_') else x)
+        unique = sorted(set(self._labels_str))
         self.class_names = unique
         self.class_to_idx = {c: i for i, c in enumerate(self.class_names)}
         self.labels = [self.class_to_idx[l] for l in self._labels_str]
@@ -106,3 +117,4 @@ test_data = CustomImageDataset(test_dir, transform=transform)
 
 print(f"Train data: {len(train_data)} images, Classes: {train_data.class_names}")
 print(f"Test data: {len(test_data)} images")
+print_img(train_data)
