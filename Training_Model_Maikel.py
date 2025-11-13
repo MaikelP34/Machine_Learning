@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # ====================== CONFIG ======================
-base_url = "C:/Users/maike/OneDrive/Documents/School/Unif/ML_2526/Project/dataset"
+base_url = "C:\\School\\3de ba\\mach\\taak\\dataset"
 
 train_data_url = os.path.join(base_url, "train", "images")
 valid_data_url = os.path.join(base_url, "valid", "images")
@@ -27,12 +27,15 @@ train_labels_url = os.path.join(base_url, "train", "labels")
 valid_labels_url = os.path.join(base_url, "valid", "labels")
 test_labels_url  = os.path.join(base_url, "test",  "labels")
 
+#name sequence
 batch_size = 32
 learning_rate = 1e-4
-epochs = 50
-num_classes = 4
-model_save_path = "C:/Users/maike/OneDrive/Documents/School/Unif/ML_2526/Project/Trained_Models/ResNet18_finetuned.pth"
+epochs = 2
 img_size = 224
+
+num_classes = 4
+model_save_path = "C:\\School\\3de ba\\mach\\taak\\dataset\\ResNet18_finetuned.pth"
+
 num_workers = min(4, os.cpu_count() or 0)  # safe default
 
 # ====================== DATASET ======================
@@ -233,7 +236,7 @@ def main():
     plt.title("Validation accuracy per epoch")
     plt.xlabel("Epoch"); plt.ylabel("Accuracy (%)")
     plt.tight_layout()
-    plt.savefig("training_summary.png")
+    plt.savefig(f"training_summary_{batch_size}_{learning_rate}_{epochs}_{img_size}.png")
     plt.show()
 
 if __name__ == "__main__":
