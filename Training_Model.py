@@ -16,7 +16,26 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # ====================== CONFIG ======================
+#name sequence
+batch_size = 32
+learning_rate = 1e-4
+epochs = 1
+img_size = 224
+
+num_classes = 4
+
 base_url = "C:\\School\\3de ba\\mach\\taak\\dataset"
+model_path = f"C:\\School\\3de ba\\mach\\taak\\models"
+
+#automatisering
+output_dir = "output"
+if not os.path.exists("output"):
+    os.makedirs("output")
+
+data_path = os.path.join(output_dir, f"data_{batch_size}_{learning_rate}_{epochs}_{img_size}" )
+#run directory
+if not os.path.exists(data_path):
+    os.makedirs(data_path)
 
 train_data_url = os.path.join(base_url, "train", "images")
 valid_data_url = os.path.join(base_url, "valid", "images")
@@ -26,14 +45,7 @@ train_labels_url = os.path.join(base_url, "train", "labels")
 valid_labels_url = os.path.join(base_url, "valid", "labels")
 test_labels_url  = os.path.join(base_url, "test",  "labels")
 
-#name sequence
-batch_size = 32
-learning_rate = 1e-4
-epochs = 2
-img_size = 224
-
-num_classes = 4
-model_save_path = "C:\\School\\3de ba\\mach\\taak\\dataset\\ResNet18_finetuned.pth"
+model_save_path = os.path.join(model_path, f"ResNet18_{batch_size}_{learning_rate}_{epochs}_{img_size}.pth")
 
 num_workers = min(4, os.cpu_count() or 0)  # safe default
 
@@ -223,10 +235,8 @@ def main():
 
     cm = confusion_matrix_from_arrays(trues, preds, num_classes)
     cm_str = np.array2string(cm)
-    fname = f"ConfusionMatrix_{batch_size}_{learning_rate}_{epochs}_{img_size}.txt"
-    dirname = os.path.dirname(fname)
-    if dirname:
-        os.makedirs(dirname, exist_ok=True)
+    fname = os.path.join(data_path, f"ConfusionMatrix_{batch_size}_{learning_rate}_{epochs}_{img_size}.txt")
+
     with open(fname, "w") as f:
         f.write(f"ConfusionMatrix_{batch_size}_{learning_rate}_{epochs}_{img_size}:\n   0 1 2 3\n{cm_str}\n")
     print("Confusion matrix (rows=true, cols=pred):\n" + cm_str)
@@ -242,7 +252,8 @@ def main():
     plt.title("Validation accuracy per epoch")
     plt.xlabel("Epoch"); plt.ylabel("Accuracy (%)")
     plt.tight_layout()
-    plt.savefig(f"training_summary_{batch_size}_{learning_rate}_{epochs}_{img_size}.png")
+    fig_dir = os.path.join(data_path, f"training_summary_{batch_size}_{learning_rate}_{epochs}_{img_size}.png")
+    plt.savefig(fig_dir)
     plt.show()
 
 if __name__ == "__main__":
