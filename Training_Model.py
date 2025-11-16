@@ -17,15 +17,18 @@ import numpy as np
 
 # ====================== CONFIG ======================
 #name sequence
-batch_size = 32
-learning_rate = 1e-4
-epochs = 1
-img_size = 224
+batch_size = 8
+learning_rate = 2e-4
+epochs = 50
+img_size = 360
 
 num_classes = 4
 
-base_url = "C:\\School\\3de ba\\mach\\taak\\dataset"
-model_path = f"C:\\School\\3de ba\\mach\\taak\\models"
+#base_url = "C:\\School\\3de ba\\mach\\taak\\dataset" #KOBE
+base_url = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\dataset" #Maikel
+
+#model_path = f"C:\\School\\3de ba\\mach\\taak\\models" #KOBE
+model_path = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\models" #Maikel
 
 #automatisering
 output_dir = "output"

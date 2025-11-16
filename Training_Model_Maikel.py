@@ -17,7 +17,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # ====================== CONFIG ======================
-base_url = "C:\\School\\3de ba\\mach\\taak\\dataset"
+#base_url = "C:\\School\\3de ba\\mach\\taak\\dataset" #Kobe
+base_url = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\dataset" #Maikel
 
 train_data_url = os.path.join(base_url, "train", "images")
 valid_data_url = os.path.join(base_url, "valid", "images")
@@ -34,7 +35,8 @@ epochs = 2
 img_size = 224
 
 num_classes = 4
-model_save_path = "C:\\School\\3de ba\\mach\\taak\\dataset\\ResNet18_finetuned.pth"
+#model_save_path = "C:\\School\\3de ba\\mach\\taak\\dataset\\ResNet18_finetuned.pth" #Kobe
+model_save_path = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\dataset\\ResNet18_finetuned.pth" #Maikel
 
 num_workers = min(4, os.cpu_count() or 0)  # safe default
 
