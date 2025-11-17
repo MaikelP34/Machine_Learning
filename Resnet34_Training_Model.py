@@ -35,7 +35,7 @@ output_dir = "output"
 if not os.path.exists("output"):
     os.makedirs("output")
 
-data_path = os.path.join(output_dir, f"data_{batch_size}_{learning_rate}_{epochs}_{img_size}" )
+data_path = os.path.join(output_dir, f"RN34_data_{batch_size}_{learning_rate}_{epochs}_{img_size}" )
 #run directory
 if not os.path.exists(data_path):
     os.makedirs(data_path)
@@ -107,8 +107,8 @@ eval_transform = Compose([
 ])
 
 # ====================== MODEL UTIL ======================
-def get_resnet18(num_classes, device, pretrained=True, unfreeze_layer4=True):
-    model = models.resnet18(pretrained=pretrained)
+def get_resnet34(num_classes, device, pretrained=True, unfreeze_layer4=True):
+    model = models.resnet34(pretrained=pretrained)
     # Freeze all params first
     for p in model.parameters():
         p.requires_grad = False
@@ -181,7 +181,7 @@ def main():
                               num_workers=num_workers, pin_memory=(device.type=="cuda"))
 
     # Model, loss, optimizer
-    model = get_resnet18(num_classes=num_classes, device=device, pretrained=True, unfreeze_layer4=True)
+    model = get_resnet34(num_classes=num_classes, device=device, pretrained=True, unfreeze_layer4=True)
     criterion = nn.CrossEntropyLoss()
     # Only params that require_grad will be optimized (layer4 + fc)
     optimizer = optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=learning_rate)

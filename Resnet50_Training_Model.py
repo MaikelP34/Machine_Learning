@@ -30,15 +30,7 @@ base_url = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Projec
 #model_path = f"C:\\School\\3de ba\\mach\\taak\\models" #KOBE
 model_path = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\models" #Maikel
 
-#automatisering
-output_dir = "output"
-if not os.path.exists("output"):
-    os.makedirs("output")
-
-data_path = os.path.join(output_dir, f"data_{batch_size}_{learning_rate}_{epochs}_{img_size}" )
-#run directory
-if not os.path.exists(data_path):
-    os.makedirs(data_path)
+model_save_path = os.path.join(model_path, f"ResNet18_{batch_size}_{learning_rate}_{epochs}_{img_size}.pth")
 
 train_data_url = os.path.join(base_url, "train", "images")
 valid_data_url = os.path.join(base_url, "valid", "images")
@@ -48,12 +40,24 @@ train_labels_url = os.path.join(base_url, "train", "labels")
 valid_labels_url = os.path.join(base_url, "valid", "labels")
 test_labels_url  = os.path.join(base_url, "test",  "labels")
 
-model_save_path = os.path.join(model_path, f"ResNet18_{batch_size}_{learning_rate}_{epochs}_{img_size}.pth")
-
 num_workers = min(4, os.cpu_count() or 0)  # safe default
 
+# ====================== automatisering ======================
+def automate(accuracy):
+    R_accuracy = round(accuracy, 2)
+    output_dir = "output"
+    if not os.path.exists("output"):
+        os.makedirs("output")
+
+    data_path = os.path.join(output_dir, f"{R_accuracy}_RN50_data_{batch_size}_{learning_rate}_{epochs}_{img_size}" )
+    #run directory
+    if not os.path.exists(data_path):
+        os.makedirs(data_path)
+
+    return data_path
+
 # ====================== DATASET ======================
-class YOLODataset(Dataset):
+class ResnetDataset(Dataset):
 
     def __init__(self, image_dir, label_dir, transform=None):
         self.image_dir = image_dir
@@ -107,8 +111,8 @@ eval_transform = Compose([
 ])
 
 # ====================== MODEL UTIL ======================
-def get_resnet18(num_classes, device, pretrained=True, unfreeze_layer4=True):
-    model = models.resnet18(pretrained=pretrained)
+def get_resnet50(num_classes, device, pretrained=True, unfreeze_layer4=True):
+    model = models.resnet50(pretrained=pretrained)
     # Freeze all params first
     for p in model.parameters():
         p.requires_grad = False
@@ -160,9 +164,9 @@ def main():
     print("Using device:", device)
 
     # Datasets & loaders
-    train_dataset = YOLODataset(train_data_url, train_labels_url, transform=train_transform)
-    valid_dataset = YOLODataset(valid_data_url, valid_labels_url, transform=eval_transform)
-    test_dataset  = YOLODataset(test_data_url,  test_labels_url,  transform=eval_transform)
+    train_dataset = ResnetDataset(train_data_url, train_labels_url, transform=train_transform)
+    valid_dataset = ResnetDataset(valid_data_url, valid_labels_url, transform=eval_transform)
+    test_dataset  = ResnetDataset(test_data_url,  test_labels_url,  transform=eval_transform)
 
     print(f"Train samples: {len(train_dataset)} | Val samples: {len(valid_dataset)} | Test samples: {len(test_dataset)}")
 
@@ -181,7 +185,7 @@ def main():
                               num_workers=num_workers, pin_memory=(device.type=="cuda"))
 
     # Model, loss, optimizer
-    model = get_resnet18(num_classes=num_classes, device=device, pretrained=True, unfreeze_layer4=True)
+    model = get_resnet50(num_classes=num_classes, device=device, pretrained=True, unfreeze_layer4=True)
     criterion = nn.CrossEntropyLoss()
     # Only params that require_grad will be optimized (layer4 + fc)
     optimizer = optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=learning_rate)
@@ -236,12 +240,14 @@ def main():
     test_acc, trues, preds = compute_accuracy(model, test_loader, device)
     print(f"\nFinal test accuracy: {test_acc:.2f}%")
 
+    data_path = automate(best_val)
+
     cm = confusion_matrix_from_arrays(trues, preds, num_classes)
     cm_str = np.array2string(cm)
     fname = os.path.join(data_path, f"ConfusionMatrix_{batch_size}_{learning_rate}_{epochs}_{img_size}.txt")
 
     with open(fname, "w") as f:
-        f.write(f"ConfusionMatrix_{batch_size}_{learning_rate}_{epochs}_{img_size}:\n   0 1 2 3\n{cm_str}\n")
+        f.write(f"Final test accuracy: {test_acc:.2f}%\nConfusionMatrix_{batch_size}_{learning_rate}_{epochs}_{img_size}:\n   0 1 2 3\n{cm_str}\n")
     print("Confusion matrix (rows=true, cols=pred):\n" + cm_str)
 
     # Plot loss + val acc
