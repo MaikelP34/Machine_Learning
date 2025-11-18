@@ -9,8 +9,7 @@ from torch.utils.data import DataLoader, Dataset
 from torchvision import models
 from torchvision.transforms import (
     Compose, Resize, ToTensor, Normalize,
-    RandomHorizontalFlip, RandomRotation, ColorJitter
-)
+    RandomHorizontalFlip, RandomRotation, ColorJitter)
 from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
@@ -30,8 +29,6 @@ base_url = "C:\\School\\3de ba\\mach\\taak\\dataset" #KOBE
 model_path = f"C:\\School\\3de ba\\mach\\taak\\models" #KOBE
 #model_path = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\models" #Maikel
 
-model_save_path = os.path.join(model_path, f"E_ResNet50_{batch_size}_{learning_rate}_{epochs}_{img_size}.pth")
-
 train_data_url = os.path.join(base_url, "train", "images")
 valid_data_url = os.path.join(base_url, "valid", "images")
 test_data_url  = os.path.join(base_url, "test",  "images")
@@ -42,12 +39,25 @@ test_labels_url  = os.path.join(base_url, "test",  "labels")
 
 num_workers = min(4, os.cpu_count() or 0)  # safe default
 
+# ====================== Data-saving ======================
+model_save_path = os.path.join(model_path, f"ResNet50_{batch_size}_{learning_rate}_{epochs}_{img_size}.pth")
+log_map = "ResNet50\\logs"
+if not os.path.exists(log_map):
+        os.makedirs(log_map)
+log_path = os.path.join(log_map, f"logging_{batch_size}_{learning_rate}_{epochs}_{img_size}.txt")
+
+name_int = 1
+while os.path.exists(model_save_path):
+    name = f"ResNet50_{batch_size}_{learning_rate}_{epochs}_{img_size}_({name_int}).pth"
+    model_save_path = os.path.join(model_path, name)
+    name_int += 1
+
 # ====================== automatisering ======================
 def automate(accuracy):
     R_accuracy = round(accuracy, 2)
-    output_dir = "output"
-    if not os.path.exists("output"):
-        os.makedirs("output")
+    output_dir = "ResNet50\\output"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     data_path = os.path.join(output_dir, f"{R_accuracy}_E_RN50_data_{batch_size}_{learning_rate}_{epochs}_{img_size}" )
     #run directory
@@ -79,8 +89,7 @@ class ResnetDataset(Dataset):
         self.image_dir = image_dir
         self.label_dir = label_dir
         self.transform = transform
-        self.images = sorted([f for f in os.listdir(image_dir)
-                       if f.lower().endswith(('.jpg', '.jpeg', '.png'))])
+        self.images = sorted([f for f in os.listdir(image_dir) if f.lower().endswith(('.jpg', '.jpeg', '.png'))])
 
     def __len__(self):
         return len(self.images)
@@ -174,6 +183,12 @@ def confusion_matrix_from_arrays(trues, preds, num_classes):
         cm[int(t), int(p)] += 1
     return cm
 
+# ====================== logging ======================
+def custom_print(log_file, message_to_print):
+    print(message_to_print)
+    with open(log_file, 'a') as of:
+        of.write(message_to_print + '\n')
+
 # ====================== MAIN ======================
 def main():
     # Device
@@ -185,7 +200,8 @@ def main():
     valid_dataset = ResnetDataset(valid_data_url, valid_labels_url, transform=eval_transform)
     test_dataset  = ResnetDataset(test_data_url,  test_labels_url,  transform=eval_transform)
 
-    print(f"Train samples: {len(train_dataset)} | Val samples: {len(valid_dataset)} | Test samples: {len(test_dataset)}")
+    custom_print(log_path, f"Saving best model in: {model_save_path}")
+    custom_print(log_path, f"Train samples: {len(train_dataset)} | Val samples: {len(valid_dataset)} | Test samples: {len(test_dataset)}")
 
     # Quick label distribution check
     try:
@@ -194,12 +210,9 @@ def main():
     except Exception as e:
         print("Could not compute label distribution:", e)
 
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True,
-                              num_workers=num_workers, pin_memory=(device.type=="cuda"))
-    valid_loader = DataLoader(valid_dataset, batch_size=batch_size, shuffle=False,
-                              num_workers=num_workers, pin_memory=(device.type=="cuda"))
-    test_loader  = DataLoader(test_dataset, batch_size=batch_size, shuffle=False,
-                              num_workers=num_workers, pin_memory=(device.type=="cuda"))
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers, pin_memory=(device.type=="cuda"))
+    valid_loader = DataLoader(valid_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=(device.type=="cuda"))
+    test_loader  = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=(device.type=="cuda"))
 
     # Model, loss, optimizer
     model = get_resnet50(num_classes=num_classes, device=device, weigth=True, unfreeze_layer4=True)
@@ -237,7 +250,7 @@ def main():
         scheduler.step()
 
         elapsed = time.time() - start_time
-        print(f"Epoch {epoch:02d}/{epochs} | Loss: {avg_loss:.4f} | Val Acc: {val_acc:5.2f}% | Time elapsed: {elapsed/60:.1f} min")
+        custom_print(log_path, f"Epoch {epoch:02d}/{epochs} | Loss: {avg_loss:.4f} | Val Acc: {val_acc:5.2f}% | Time elapsed: {elapsed/60:.1f} min")
 
         # Save best model
         if val_acc > best_val or (val_acc == best_val and avg_loss < best_loss):
@@ -250,14 +263,14 @@ def main():
                 "epoch": epoch,
                 "val_accuracy": val_acc
             }, model_save_path)
-            print(f" -> New best model saved (val: {val_acc:.2f}% and loss: {avg_loss:.4f})")
+            custom_print(log_path, f" -> New best model saved (val: {val_acc:.2f}% and loss: {avg_loss:.4f})")
 
     # Load best model for final eval
     chk = pt.load(model_save_path, map_location=device)
     model.load_state_dict(chk["model_state"])
 
     test_acc, trues, preds = compute_accuracy(model, test_loader, device)
-    print(f"\nFinal test accuracy: {test_acc:.2f}%")
+    custom_print(log_path, f"\nFinal test accuracy: {test_acc:.2f}%")
 
     data_path = automate(best_val)
 
@@ -267,9 +280,11 @@ def main():
 
     with open(fname, "w") as f:
         f.write(f"Final test accuracy: {test_acc:.2f}%\nConfusionMatrix_{batch_size}_{learning_rate}_{epochs}_{img_size}:\n   0 1 2 3\n{cm_str}\n")
-    print("Confusion matrix (rows=true, cols=pred):\n" + cm_str)
+    custom_print(log_path, "Confusion matrix (rows=true, cols=pred):\n" + cm_str)
 
     print_graph(data_path, train_losses, val_accuracies)
+
+    custom_print(log_path, f"accuracy: {best_val}\n ---------------------------------------------------------")
 
 
 if __name__ == "__main__":

@@ -19,23 +19,29 @@ import numpy as np
 #name sequence
 batch_size = 4
 learning_rate = 2e-4
-epochs = 50
+epochs = 5
 img_size = 360
 
 num_classes = 4
 
-#base_url = "C:\\School\\3de ba\\mach\\taak\\dataset" #KOBE
-base_url = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\dataset" #Maikel
+base_url = "C:\\School\\3de ba\\mach\\taak\\dataset" #KOBE
+#base_url = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\dataset" #Maikel
 
-#model_path = f"C:\\School\\3de ba\\mach\\taak\\models" #KOBE
-model_path = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\models" #Maikel
+model_path = f"C:\\School\\3de ba\\mach\\taak\\models" #KOBE
+#model_path = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\models" #Maikel
+
+model_save_path = os.path.join(model_path, f"E_ResNet18_{batch_size}_{learning_rate}_{epochs}_{img_size}.pth")
+log_map = "ResNet18\\logs"
+if not os.path.exists(log_map):
+        os.makedirs(log_map)
+log_path = os.path.join(log_map, f"logging_{batch_size}_{learning_rate}_{epochs}_{img_size}.txt")
 
 #automatisering
-output_dir = "output"
-if not os.path.exists("output"):
-    os.makedirs("output")
+output_dir = "ResNet18\\output"
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
 
-data_path = os.path.join(output_dir, f"RN34_data_{batch_size}_{learning_rate}_{epochs}_{img_size}" )
+data_path = os.path.join(output_dir, f"data_{batch_size}_{learning_rate}_{epochs}_{img_size}" )
 #run directory
 if not os.path.exists(data_path):
     os.makedirs(data_path)
@@ -49,6 +55,12 @@ valid_labels_url = os.path.join(base_url, "valid", "labels")
 test_labels_url  = os.path.join(base_url, "test",  "labels")
 
 model_save_path = os.path.join(model_path, f"ResNet18_{batch_size}_{learning_rate}_{epochs}_{img_size}.pth")
+
+name_int = 1
+while os.path.exists(model_save_path):
+    name = f"ResNet18_{batch_size}_{learning_rate}_{epochs}_{img_size}_{name_int}.pth"
+    model_save_path = os.path.join(model_path, name)
+    name_int += 1
 
 num_workers = min(4, os.cpu_count() or 0)  # safe default
 
@@ -107,8 +119,10 @@ eval_transform = Compose([
 ])
 
 # ====================== MODEL UTIL ======================
-def get_resnet34(num_classes, device, pretrained=True, unfreeze_layer4=True):
-    model = models.resnet34(pretrained=pretrained)
+def get_resnet18(num_classes, device, weigth=True, unfreeze_layer4=True):
+    # Use the torchvision enum for weights when pretrained is requested
+    weights = models.ResNet18_Weights.IMAGENET1K_V1 if weigth else None
+    model = models.resnet18(weights=weights)
     # Freeze all params first
     for p in model.parameters():
         p.requires_grad = False
@@ -181,7 +195,7 @@ def main():
                               num_workers=num_workers, pin_memory=(device.type=="cuda"))
 
     # Model, loss, optimizer
-    model = get_resnet34(num_classes=num_classes, device=device, pretrained=True, unfreeze_layer4=True)
+    model = get_resnet18(num_classes=num_classes, device=device, weigth=True, unfreeze_layer4=True)
     criterion = nn.CrossEntropyLoss()
     # Only params that require_grad will be optimized (layer4 + fc)
     optimizer = optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=learning_rate)
