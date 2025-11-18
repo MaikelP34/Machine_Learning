@@ -19,16 +19,16 @@ import numpy as np
 #name sequence
 batch_size = 4
 learning_rate = 2e-4
-epochs = 20
+epochs = 2
 img_size = 480
 
 num_classes = 4
 
-#base_url = "C:\\School\\3de ba\\mach\\taak\\dataset" #KOBE
-base_url = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\dataset" #Maikel
+base_url = "C:\\School\\3de ba\\mach\\taak\\dataset" #KOBE
+#base_url = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\dataset" #Maikel
 
-#model_path = f"C:\\School\\3de ba\\mach\\taak\\models" #KOBE
-model_path = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\models" #Maikel
+model_path = f"C:\\School\\3de ba\\mach\\taak\\models" #KOBE
+#model_path = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\models" #Maikel
 
 model_save_path = os.path.join(model_path, f"ResNet18_{batch_size}_{learning_rate}_{epochs}_{img_size}.pth")
 
@@ -55,6 +55,22 @@ def automate(accuracy):
         os.makedirs(data_path)
 
     return data_path
+
+# ====================== Graphs ======================
+def print_graph(data_path, train_losses, val_accuracies):
+    plt.figure(figsize=(8,6))
+    plt.subplot(2,1,1)
+    plt.plot(range(1, len(train_losses)+1), train_losses, marker='o')
+    plt.title("Train loss per epoch")
+    plt.xlabel("Epoch"); plt.ylabel("Loss")
+    plt.subplot(2,1,2)
+    plt.plot(range(1, len(val_accuracies)+1), val_accuracies, marker='o')
+    plt.title("Validation accuracy per epoch")
+    plt.xlabel("Epoch"); plt.ylabel("Accuracy (%)")
+    plt.tight_layout()
+    fig_dir = os.path.join(data_path, f"training_summary_{batch_size}_{learning_rate}_{epochs}_{img_size}.png")
+    plt.savefig(fig_dir)
+    plt.show()
 
 # ====================== DATASET ======================
 class ResnetDataset(Dataset):
@@ -111,8 +127,9 @@ eval_transform = Compose([
 ])
 
 # ====================== MODEL UTIL ======================
-def get_resnet50(num_classes, device, pretrained=True, unfreeze_layer4=True):
-    model = models.resnet50(pretrained=pretrained)
+def get_resnet50(num_classes, device, weigth=True, unfreeze_layer4=True):
+    weights = models.ResNet50_Weights.IMAGENET1K_V1 if weigth else None
+    model = models.resnet50(weights=weights)
     # Freeze all params first
     for p in model.parameters():
         p.requires_grad = False
@@ -185,7 +202,7 @@ def main():
                               num_workers=num_workers, pin_memory=(device.type=="cuda"))
 
     # Model, loss, optimizer
-    model = get_resnet50(num_classes=num_classes, device=device, pretrained=True, unfreeze_layer4=True)
+    model = get_resnet50(num_classes=num_classes, device=device, weigth=True, unfreeze_layer4=True)
     criterion = nn.CrossEntropyLoss()
     # Only params that require_grad will be optimized (layer4 + fc)
     optimizer = optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=learning_rate)
@@ -250,20 +267,8 @@ def main():
         f.write(f"Final test accuracy: {test_acc:.2f}%\nConfusionMatrix_{batch_size}_{learning_rate}_{epochs}_{img_size}:\n   0 1 2 3\n{cm_str}\n")
     print("Confusion matrix (rows=true, cols=pred):\n" + cm_str)
 
-    # Plot loss + val acc
-    plt.figure(figsize=(8,6))
-    plt.subplot(2,1,1)
-    plt.plot(range(1, len(train_losses)+1), train_losses, marker='o')
-    plt.title("Train loss per epoch")
-    plt.xlabel("Epoch"); plt.ylabel("Loss")
-    plt.subplot(2,1,2)
-    plt.plot(range(1, len(val_accuracies)+1), val_accuracies, marker='o')
-    plt.title("Validation accuracy per epoch")
-    plt.xlabel("Epoch"); plt.ylabel("Accuracy (%)")
-    plt.tight_layout()
-    fig_dir = os.path.join(data_path, f"training_summary_{batch_size}_{learning_rate}_{epochs}_{img_size}.png")
-    plt.savefig(fig_dir)
-    plt.show()
+    print_graph(data_path, train_losses, val_accuracies)
+
 
 if __name__ == "__main__":
     import multiprocessing

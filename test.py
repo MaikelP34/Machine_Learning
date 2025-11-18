@@ -16,5 +16,5 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # ====================== CONFIG ======================
-if not os.path.exists("output"):
-    os.makedirs("output")
+device = pt.device("cuda" if pt.cuda.is_available() else "cpu")
+print("Using device:", device)
