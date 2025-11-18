@@ -19,7 +19,7 @@ import numpy as np
 #name sequence
 batch_size = 4
 learning_rate = 2e-4
-epochs = 20
+epochs = 200
 img_size = 480
 
 num_classes = 4
@@ -30,7 +30,7 @@ base_url = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Projec
 #model_path = f"C:\\School\\3de ba\\mach\\taak\\models" #KOBE
 model_path = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\models" #Maikel
 
-model_save_path = os.path.join(model_path, f"ResNet18_{batch_size}_{learning_rate}_{epochs}_{img_size}.pth")
+model_save_path = os.path.join(model_path, f"E_ResNet50_{batch_size}_{learning_rate}_{epochs}_{img_size}.pth")
 
 train_data_url = os.path.join(base_url, "train", "images")
 valid_data_url = os.path.join(base_url, "valid", "images")
@@ -49,7 +49,7 @@ def automate(accuracy):
     if not os.path.exists("output"):
         os.makedirs("output")
 
-    data_path = os.path.join(output_dir, f"{R_accuracy}_RN50_data_{batch_size}_{learning_rate}_{epochs}_{img_size}" )
+    data_path = os.path.join(output_dir, f"{R_accuracy}_E_RN50_data_{batch_size}_{learning_rate}_{epochs}_{img_size}" )
     #run directory
     if not os.path.exists(data_path):
         os.makedirs(data_path)
@@ -192,6 +192,7 @@ def main():
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.8)
 
     best_val = -1.0
+    best_loss = 100.0
     train_losses = []
     val_accuracies = []
     start_time = time.time()
@@ -222,8 +223,9 @@ def main():
         print(f"Epoch {epoch:02d}/{epochs} | Loss: {avg_loss:.4f} | Val Acc: {val_acc:5.2f}% | Time elapsed: {elapsed/60:.1f} min")
 
         # Save best model
-        if val_acc > best_val:
+        if val_acc > best_val or (val_acc == best_val and avg_loss < best_loss):
             best_val = val_acc
+            best_loss = avg_loss
             os.makedirs(os.path.dirname(model_save_path), exist_ok=True)
             pt.save({
                 "model_state": model.state_dict(),
@@ -231,7 +233,7 @@ def main():
                 "epoch": epoch,
                 "val_accuracy": val_acc
             }, model_save_path)
-            print(f" -> New best model saved (val {val_acc:.2f}%)")
+            print(f" -> New best model saved (val: {val_acc:.2f}% and loss: {avg_loss:.4f})")
 
     # Load best model for final eval
     chk = pt.load(model_save_path, map_location=device)
