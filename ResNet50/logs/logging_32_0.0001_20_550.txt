@@ -1,0 +1,38 @@
+Saving best model in: C:\School\3de ba\mach\taak\models\ResNet50_32_0.0001_20_550.pth
+Train samples: 316 | Val samples: 49 | Test samples: 24
+Epoch 01/20 | Loss: 1.4032 | Val Acc: 28.57% | Time elapsed: 0.5 min
+ -> New best model saved (val: 28.57% and loss: 1.4032)
+Epoch 02/20 | Loss: 1.3372 | Val Acc: 26.53% | Time elapsed: 1.0 min
+Epoch 03/20 | Loss: 1.2550 | Val Acc: 38.78% | Time elapsed: 2.2 min
+ -> New best model saved (val: 38.78% and loss: 1.2550)
+Epoch 04/20 | Loss: 1.0585 | Val Acc: 65.31% | Time elapsed: 3.2 min
+ -> New best model saved (val: 65.31% and loss: 1.0585)
+Epoch 05/20 | Loss: 0.7766 | Val Acc: 55.10% | Time elapsed: 3.8 min
+Epoch 06/20 | Loss: 0.5744 | Val Acc: 71.43% | Time elapsed: 4.2 min
+ -> New best model saved (val: 71.43% and loss: 0.5744)
+Epoch 07/20 | Loss: 0.4102 | Val Acc: 77.55% | Time elapsed: 4.8 min
+ -> New best model saved (val: 77.55% and loss: 0.4102)
+Epoch 08/20 | Loss: 0.3079 | Val Acc: 83.67% | Time elapsed: 5.2 min
+ -> New best model saved (val: 83.67% and loss: 0.3079)
+Epoch 09/20 | Loss: 0.2245 | Val Acc: 77.55% | Time elapsed: 5.8 min
+Epoch 10/20 | Loss: 0.1527 | Val Acc: 77.55% | Time elapsed: 6.3 min
+Epoch 11/20 | Loss: 0.1156 | Val Acc: 73.47% | Time elapsed: 6.8 min
+Epoch 12/20 | Loss: 0.0933 | Val Acc: 77.55% | Time elapsed: 7.2 min
+Epoch 13/20 | Loss: 0.0756 | Val Acc: 79.59% | Time elapsed: 7.7 min
+Epoch 14/20 | Loss: 0.0685 | Val Acc: 83.67% | Time elapsed: 8.3 min
+ -> New best model saved (val: 83.67% and loss: 0.0685)
+Epoch 15/20 | Loss: 0.0807 | Val Acc: 81.63% | Time elapsed: 8.8 min
+Epoch 16/20 | Loss: 0.0649 | Val Acc: 79.59% | Time elapsed: 9.3 min
+Epoch 17/20 | Loss: 0.0477 | Val Acc: 79.59% | Time elapsed: 9.9 min
+Epoch 18/20 | Loss: 0.0392 | Val Acc: 73.47% | Time elapsed: 10.4 min
+Epoch 19/20 | Loss: 0.0490 | Val Acc: 77.55% | Time elapsed: 11.6 min
+Epoch 20/20 | Loss: 0.0335 | Val Acc: 79.59% | Time elapsed: 12.5 min
+
+Final test accuracy: 79.17%
+Confusion matrix (rows=true, cols=pred):
+[[4 0 0 0]
+ [1 6 3 0]
+ [0 1 3 0]
+ [0 0 0 6]]
+accuracy: 83.6734693877551
+ ---------------------------------------------------------

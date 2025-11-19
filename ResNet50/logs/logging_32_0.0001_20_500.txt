@@ -1,0 +1,39 @@
+Saving best model in: C:\School\3de ba\mach\taak\models\ResNet50_32_0.0001_20_500.pth
+Train samples: 316 | Val samples: 49 | Test samples: 24
+Epoch 01/20 | Loss: 1.3988 | Val Acc: 30.61% | Time elapsed: 0.7 min
+ -> New best model saved (val: 30.61% and loss: 1.3988)
+Epoch 02/20 | Loss: 1.3039 | Val Acc: 53.06% | Time elapsed: 1.7 min
+ -> New best model saved (val: 53.06% and loss: 1.3039)
+Epoch 03/20 | Loss: 1.1390 | Val Acc: 51.02% | Time elapsed: 2.9 min
+Epoch 04/20 | Loss: 0.8681 | Val Acc: 65.31% | Time elapsed: 4.5 min
+ -> New best model saved (val: 65.31% and loss: 0.8681)
+Epoch 05/20 | Loss: 0.6563 | Val Acc: 71.43% | Time elapsed: 5.8 min
+ -> New best model saved (val: 71.43% and loss: 0.6563)
+Epoch 06/20 | Loss: 0.4526 | Val Acc: 69.39% | Time elapsed: 7.0 min
+Epoch 07/20 | Loss: 0.3137 | Val Acc: 69.39% | Time elapsed: 8.4 min
+Epoch 08/20 | Loss: 0.2321 | Val Acc: 73.47% | Time elapsed: 9.7 min
+ -> New best model saved (val: 73.47% and loss: 0.2321)
+Epoch 09/20 | Loss: 0.1590 | Val Acc: 67.35% | Time elapsed: 11.1 min
+Epoch 10/20 | Loss: 0.1390 | Val Acc: 73.47% | Time elapsed: 12.4 min
+ -> New best model saved (val: 73.47% and loss: 0.1390)
+Epoch 11/20 | Loss: 0.0828 | Val Acc: 73.47% | Time elapsed: 13.9 min
+ -> New best model saved (val: 73.47% and loss: 0.0828)
+Epoch 12/20 | Loss: 0.0856 | Val Acc: 71.43% | Time elapsed: 15.4 min
+Epoch 13/20 | Loss: 0.0750 | Val Acc: 79.59% | Time elapsed: 16.7 min
+ -> New best model saved (val: 79.59% and loss: 0.0750)
+Epoch 14/20 | Loss: 0.0593 | Val Acc: 75.51% | Time elapsed: 18.1 min
+Epoch 15/20 | Loss: 0.0469 | Val Acc: 67.35% | Time elapsed: 19.6 min
+Epoch 16/20 | Loss: 0.0495 | Val Acc: 75.51% | Time elapsed: 21.1 min
+Epoch 17/20 | Loss: 0.0302 | Val Acc: 77.55% | Time elapsed: 22.3 min
+Epoch 18/20 | Loss: 0.0587 | Val Acc: 69.39% | Time elapsed: 23.1 min
+Epoch 19/20 | Loss: 0.0493 | Val Acc: 71.43% | Time elapsed: 23.5 min
+Epoch 20/20 | Loss: 0.0378 | Val Acc: 65.31% | Time elapsed: 23.9 min
+
+Final test accuracy: 83.33%
+Confusion matrix (rows=true, cols=pred):
+[[3 1 0 0]
+ [0 9 1 0]
+ [0 2 2 0]
+ [0 0 0 6]]
+accuracy: 79.59183673469387
+ ---------------------------------------------------------

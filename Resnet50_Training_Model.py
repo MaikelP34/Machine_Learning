@@ -18,7 +18,7 @@ import numpy as np
 #name sequence
 batch_size = 32
 learning_rate = 1e-4
-epochs = 20
+epochs = 10
 img_size = 480
 
 num_classes = 4

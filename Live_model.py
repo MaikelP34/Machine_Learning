@@ -11,7 +11,7 @@ from PIL import Image
 num_classes = 4
 img_size = 480
 
-model_path = "C:\\School\\3de ba\\mach\\taak\\models\\E_ResNet50_4_0.0002_200_480.pth"    # <-- pas dit aan
+model_path = "C:\\School\\3de ba\\mach\\taak\\models\\Live_ResNet50_4_0.0002_200_480.pth"    # <-- pas dit aan
 
 labels = ["class_0", "class_1", "class_2", "class_3"]  # <-- vul in!
 
@@ -60,28 +60,40 @@ transform = Compose([
 # ====================== REAL-TIME CAMERA LOOP ======================
 cam = cv2.VideoCapture(0)
 
+cv2.namedWindow("Realtime ResNet50", cv2.WINDOW_NORMAL)
+
 while True:
     ret, frame = cam.read()
     if not ret:
         break
 
+    # Flip image to remove mirroring
+    frame = cv2.flip(frame, 1)
+
+    # Resize for bigger pop-up
+    frame = cv2.resize(frame, (960, 720))
+
     # Preprocess: BGR → RGB
     rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     pil_img = Image.fromarray(rgb)
 
-    # Apply transform
     img_tensor = transform(pil_img).unsqueeze(0).to(device)
 
     with pt.no_grad():
         outputs = model(img_tensor)
-        pred = outputs.argmax(1).item()
 
-    # Label
+        # Prediction + probability
+        probs = pt.softmax(outputs, dim=1)[0]
+        pred = outputs.argmax(1).item()
+        percent = float(probs[pred] * 100)
+
     label = labels[pred]
 
-    # Tekst op beeld
-    cv2.putText(frame, f"q to quit, prediction: {label}", (5, 40),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (225, 255, 225), 2)
+    # Text on screen
+    text = f"{label}: {percent:.2f}%   (q to quit)"
+    cv2.putText(frame, text, (5, 30),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.8,
+                (225, 255, 225), 2)
 
     cv2.imshow("Realtime ResNet50", frame)
 
