@@ -80,8 +80,8 @@ while True:
     label = labels[pred]
 
     # Tekst op beeld
-    cv2.putText(frame, f"q to quit, prediction: {label}", (10, 40),
-                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+    cv2.putText(frame, f"q to quit, prediction: {label}", (5, 40),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (225, 255, 225), 2)
 
     cv2.imshow("Realtime ResNet50", frame)
 
