@@ -1,0 +1,7 @@
+Final test accuracy: 45.83%
+ConfusionMatrix_1_0.0004_30_480:
+   0 1 2 3
+[[1 0 3 0]
+ [1 0 9 0]
+ [0 0 4 0]
+ [0 0 0 6]]
