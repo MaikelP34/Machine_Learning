@@ -1,0 +1,43 @@
+Saving best model in: C:\School\3de ba\mach\taak\models\ResNet50_32_0.0001_20_280.pth
+Train samples: 316 | Val samples: 49 | Test samples: 24
+Epoch 01/20 | Loss: 1.3829 | Val Acc: 26.53% | Time elapsed: 1.5 min
+ -> New best model saved (val: 26.53% and loss: 1.3829)
+Epoch 02/20 | Loss: 1.2602 | Val Acc: 51.02% | Time elapsed: 2.6 min
+ -> New best model saved (val: 51.02% and loss: 1.2602)
+Epoch 03/20 | Loss: 0.9869 | Val Acc: 71.43% | Time elapsed: 3.6 min
+ -> New best model saved (val: 71.43% and loss: 0.9869)
+Epoch 04/20 | Loss: 0.7036 | Val Acc: 71.43% | Time elapsed: 4.5 min
+ -> New best model saved (val: 71.43% and loss: 0.7036)
+Epoch 05/20 | Loss: 0.4079 | Val Acc: 73.47% | Time elapsed: 5.5 min
+ -> New best model saved (val: 73.47% and loss: 0.4079)
+Epoch 06/20 | Loss: 0.2709 | Val Acc: 75.51% | Time elapsed: 6.6 min
+ -> New best model saved (val: 75.51% and loss: 0.2709)
+Epoch 07/20 | Loss: 0.1870 | Val Acc: 77.55% | Time elapsed: 7.7 min
+ -> New best model saved (val: 77.55% and loss: 0.1870)
+Epoch 08/20 | Loss: 0.0932 | Val Acc: 81.63% | Time elapsed: 8.4 min
+ -> New best model saved (val: 81.63% and loss: 0.0932)
+Epoch 09/20 | Loss: 0.1002 | Val Acc: 77.55% | Time elapsed: 9.2 min
+Epoch 10/20 | Loss: 0.1095 | Val Acc: 79.59% | Time elapsed: 10.3 min
+Epoch 11/20 | Loss: 0.0678 | Val Acc: 79.59% | Time elapsed: 11.3 min
+Epoch 12/20 | Loss: 0.0898 | Val Acc: 81.63% | Time elapsed: 12.6 min
+ -> New best model saved (val: 81.63% and loss: 0.0898)
+Epoch 13/20 | Loss: 0.0736 | Val Acc: 83.67% | Time elapsed: 13.9 min
+ -> New best model saved (val: 83.67% and loss: 0.0736)
+Epoch 14/20 | Loss: 0.0738 | Val Acc: 79.59% | Time elapsed: 14.4 min
+Epoch 15/20 | Loss: 0.0348 | Val Acc: 83.67% | Time elapsed: 15.2 min
+ -> New best model saved (val: 83.67% and loss: 0.0348)
+Epoch 16/20 | Loss: 0.0444 | Val Acc: 79.59% | Time elapsed: 16.0 min
+Epoch 17/20 | Loss: 0.0363 | Val Acc: 81.63% | Time elapsed: 17.4 min
+Epoch 18/20 | Loss: 0.0174 | Val Acc: 81.63% | Time elapsed: 19.2 min
+Epoch 19/20 | Loss: 0.0332 | Val Acc: 79.59% | Time elapsed: 20.9 min
+Epoch 20/20 | Loss: 0.0192 | Val Acc: 83.67% | Time elapsed: 22.5 min
+ -> New best model saved (val: 83.67% and loss: 0.0192)
+
+Final test accuracy: 70.83%
+Confusion matrix (rows=true, cols=pred):
+[[2 2 0 0]
+ [1 9 0 0]
+ [0 4 0 0]
+ [0 0 0 6]]
+accuracy: 83.6734693877551
+ ---------------------------------------------------------

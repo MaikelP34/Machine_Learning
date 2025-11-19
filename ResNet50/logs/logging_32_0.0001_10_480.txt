@@ -1,0 +1,4 @@
+Saving best model in: C:\School\3de ba\mach\taak\models\ResNet50_32_0.0001_10_480.pth
+Train samples: 316 | Val samples: 49 | Test samples: 24
+Epoch 01/10 | Loss: 1.3853 | Val Acc: 38.78% | Time elapsed: 1.0 min
+ -> New best model saved (val: 38.78% and loss: 1.3853)
