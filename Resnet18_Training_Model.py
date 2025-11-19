@@ -1,4 +1,4 @@
-#TODO testen met verschillende waarden, clean-up, ?zwart-wit?, ?nieuw model?, ptt, real time
+#TODO testen met verschillende waarden, ptt
 import os
 import time
 from collections import Counter
