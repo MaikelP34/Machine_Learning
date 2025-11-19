@@ -16,9 +16,9 @@ import numpy as np
 
 # ====================== CONFIG ======================
 #name sequence
-batch_size = 4
-learning_rate = 2e-4
-epochs = 2
+batch_size = 32
+learning_rate = 1e-4
+epochs = 20
 img_size = 480
 
 num_classes = 4
