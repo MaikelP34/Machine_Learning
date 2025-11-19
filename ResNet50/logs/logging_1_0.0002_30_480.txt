@@ -1,0 +1,52 @@
+Saving best model in: C:\Users\maike\OneDrive\Documents\School\Unif\ML_2526\Project\models\ResNet50_1_0.0002_30_480.pth
+Train samples: 316 | Val samples: 49 | Test samples: 24
+Epoch 01/30 | Loss: 1.4251 | Val Acc: 28.57% | Time elapsed: 0.5 min
+ -> New best model saved (val: 28.57% and loss: 1.4251)
+Epoch 02/30 | Loss: 1.3901 | Val Acc: 22.45% | Time elapsed: 2.2 min
+Epoch 03/30 | Loss: 1.3878 | Val Acc: 20.41% | Time elapsed: 2.7 min
+Epoch 04/30 | Loss: 1.3881 | Val Acc: 24.49% | Time elapsed: 3.2 min
+Epoch 05/30 | Loss: 1.3859 | Val Acc: 22.45% | Time elapsed: 3.8 min
+Epoch 06/30 | Loss: 1.3826 | Val Acc: 28.57% | Time elapsed: 4.3 min
+ -> New best model saved (val: 28.57% and loss: 1.3826)
+Epoch 07/30 | Loss: 1.3514 | Val Acc: 28.57% | Time elapsed: 4.8 min
+ -> New best model saved (val: 28.57% and loss: 1.3514)
+Epoch 08/30 | Loss: 1.2241 | Val Acc: 30.61% | Time elapsed: 5.4 min
+ -> New best model saved (val: 30.61% and loss: 1.2241)
+Epoch 09/30 | Loss: 1.0482 | Val Acc: 26.53% | Time elapsed: 5.9 min
+Epoch 10/30 | Loss: 0.9340 | Val Acc: 59.18% | Time elapsed: 6.4 min
+ -> New best model saved (val: 59.18% and loss: 0.9340)
+Epoch 11/30 | Loss: 0.8389 | Val Acc: 69.39% | Time elapsed: 7.0 min
+ -> New best model saved (val: 69.39% and loss: 0.8389)
+Epoch 12/30 | Loss: 0.7832 | Val Acc: 59.18% | Time elapsed: 8.3 min
+Epoch 13/30 | Loss: 0.6902 | Val Acc: 69.39% | Time elapsed: 9.7 min
+ -> New best model saved (val: 69.39% and loss: 0.6902)
+Epoch 14/30 | Loss: 0.6106 | Val Acc: 71.43% | Time elapsed: 11.3 min
+ -> New best model saved (val: 71.43% and loss: 0.6106)
+Epoch 15/30 | Loss: 0.5537 | Val Acc: 71.43% | Time elapsed: 12.8 min
+ -> New best model saved (val: 71.43% and loss: 0.5537)
+Epoch 16/30 | Loss: 0.4853 | Val Acc: 65.31% | Time elapsed: 14.7 min
+Epoch 17/30 | Loss: 0.4661 | Val Acc: 71.43% | Time elapsed: 15.7 min
+ -> New best model saved (val: 71.43% and loss: 0.4661)
+Epoch 18/30 | Loss: 0.4707 | Val Acc: 79.59% | Time elapsed: 17.2 min
+ -> New best model saved (val: 79.59% and loss: 0.4707)
+Epoch 19/30 | Loss: 0.3343 | Val Acc: 65.31% | Time elapsed: 19.0 min
+Epoch 20/30 | Loss: 0.3309 | Val Acc: 53.06% | Time elapsed: 20.3 min
+Epoch 21/30 | Loss: 0.3528 | Val Acc: 42.86% | Time elapsed: 21.7 min
+Epoch 22/30 | Loss: 0.2871 | Val Acc: 59.18% | Time elapsed: 22.9 min
+Epoch 23/30 | Loss: 0.2791 | Val Acc: 42.86% | Time elapsed: 24.2 min
+Epoch 24/30 | Loss: 0.3109 | Val Acc: 57.14% | Time elapsed: 24.7 min
+Epoch 25/30 | Loss: 0.2479 | Val Acc: 46.94% | Time elapsed: 25.3 min
+Epoch 26/30 | Loss: 0.2514 | Val Acc: 61.22% | Time elapsed: 25.9 min
+Epoch 27/30 | Loss: 0.2244 | Val Acc: 40.82% | Time elapsed: 26.6 min
+Epoch 28/30 | Loss: 0.2217 | Val Acc: 46.94% | Time elapsed: 27.3 min
+Epoch 29/30 | Loss: 0.2381 | Val Acc: 46.94% | Time elapsed: 28.8 min
+Epoch 30/30 | Loss: 0.2010 | Val Acc: 42.86% | Time elapsed: 30.2 min
+
+Final test accuracy: 79.17%
+Confusion matrix (rows=true, cols=pred):
+[[2 2 0 0]
+ [1 8 1 0]
+ [0 1 3 0]
+ [0 0 0 6]]
+accuracy: 79.59183673469387
+ ---------------------------------------------------------
