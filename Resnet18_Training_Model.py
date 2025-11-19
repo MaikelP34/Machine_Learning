@@ -1,4 +1,4 @@
-#TODO testen met verschillende waarden, clean-up, ?zwart-wit?, ?nieuw model?, ptt
+#TODO testen met verschillende waarden, clean-up, ?zwart-wit?, ?nieuw model?, ptt, real time
 import os
 import time
 from collections import Counter
@@ -59,7 +59,7 @@ def automate(accuracy):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    data_path = os.path.join(output_dir, f"{R_accuracy}_E_RN50_data_{batch_size}_{learning_rate}_{epochs}_{img_size}" )
+    data_path = os.path.join(output_dir, f"{R_accuracy}_RN18_data_{batch_size}_{learning_rate}_{epochs}_{img_size}" )
     #run directory
     if not os.path.exists(data_path):
         os.makedirs(data_path)
@@ -137,8 +137,8 @@ eval_transform = Compose([
 
 # ====================== MODEL UTIL ======================
 def get_Resnet18(num_classes, device, weigth=True, unfreeze_layer4=True):
-    weights = models.Resnet18_Weights.IMAGENET1K_V1 if weigth else None
-    model = models.Resnet18(weights=weights)
+    weights = models.ResNet18_Weights.IMAGENET1K_V1 if weigth else None
+    model = models.resnet18(weights=weights)
     # Freeze all params first
     for p in model.parameters():
         p.requires_grad = False
