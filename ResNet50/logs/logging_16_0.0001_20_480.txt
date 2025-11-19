@@ -1,0 +1,39 @@
+Saving best model in: C:\Users\maike\OneDrive\Documents\School\Unif\ML_2526\Project\models\ResNet50_16_0.0001_20_480.pth
+Train samples: 316 | Val samples: 49 | Test samples: 24
+Epoch 01/20 | Loss: 1.3997 | Val Acc: 36.73% | Time elapsed: 1.7 min
+ -> New best model saved (val: 36.73% and loss: 1.3997)
+Epoch 02/20 | Loss: 1.2052 | Val Acc: 55.10% | Time elapsed: 3.3 min
+ -> New best model saved (val: 55.10% and loss: 1.2052)
+Epoch 03/20 | Loss: 0.8676 | Val Acc: 63.27% | Time elapsed: 5.2 min
+ -> New best model saved (val: 63.27% and loss: 0.8676)
+Epoch 04/20 | Loss: 0.5508 | Val Acc: 71.43% | Time elapsed: 7.0 min
+ -> New best model saved (val: 71.43% and loss: 0.5508)
+Epoch 05/20 | Loss: 0.3856 | Val Acc: 85.71% | Time elapsed: 7.7 min
+ -> New best model saved (val: 85.71% and loss: 0.3856)
+Epoch 06/20 | Loss: 0.2630 | Val Acc: 75.51% | Time elapsed: 8.3 min
+Epoch 07/20 | Loss: 0.1947 | Val Acc: 77.55% | Time elapsed: 8.9 min
+Epoch 08/20 | Loss: 0.1714 | Val Acc: 85.71% | Time elapsed: 9.4 min
+ -> New best model saved (val: 85.71% and loss: 0.1714)
+Epoch 09/20 | Loss: 0.1093 | Val Acc: 81.63% | Time elapsed: 10.0 min
+Epoch 10/20 | Loss: 0.0996 | Val Acc: 81.63% | Time elapsed: 10.5 min
+Epoch 11/20 | Loss: 0.0875 | Val Acc: 85.71% | Time elapsed: 11.1 min
+ -> New best model saved (val: 85.71% and loss: 0.0875)
+Epoch 12/20 | Loss: 0.0545 | Val Acc: 83.67% | Time elapsed: 11.8 min
+Epoch 13/20 | Loss: 0.0615 | Val Acc: 79.59% | Time elapsed: 12.6 min
+Epoch 14/20 | Loss: 0.1027 | Val Acc: 81.63% | Time elapsed: 14.2 min
+Epoch 15/20 | Loss: 0.0428 | Val Acc: 83.67% | Time elapsed: 15.8 min
+Epoch 16/20 | Loss: 0.1158 | Val Acc: 71.43% | Time elapsed: 17.7 min
+Epoch 17/20 | Loss: 0.0529 | Val Acc: 75.51% | Time elapsed: 19.4 min
+Epoch 18/20 | Loss: 0.0857 | Val Acc: 77.55% | Time elapsed: 21.3 min
+Epoch 19/20 | Loss: 0.0773 | Val Acc: 81.63% | Time elapsed: 23.0 min
+Epoch 20/20 | Loss: 0.0403 | Val Acc: 87.76% | Time elapsed: 25.1 min
+ -> New best model saved (val: 87.76% and loss: 0.0403)
+
+Final test accuracy: 83.33%
+Confusion matrix (rows=true, cols=pred):
+[[4 0 0 0]
+ [1 8 1 0]
+ [0 2 2 0]
+ [0 0 0 6]]
+accuracy: 87.75510204081633
+ ---------------------------------------------------------

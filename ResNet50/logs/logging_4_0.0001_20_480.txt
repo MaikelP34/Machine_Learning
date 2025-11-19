@@ -1,0 +1,38 @@
+Saving best model in: C:\Users\maike\OneDrive\Documents\School\Unif\ML_2526\Project\models\ResNet50_4_0.0001_20_480.pth
+Train samples: 316 | Val samples: 49 | Test samples: 24
+Epoch 01/20 | Loss: 1.3734 | Val Acc: 53.06% | Time elapsed: 0.6 min
+ -> New best model saved (val: 53.06% and loss: 1.3734)
+Epoch 02/20 | Loss: 1.0506 | Val Acc: 55.10% | Time elapsed: 1.1 min
+ -> New best model saved (val: 55.10% and loss: 1.0506)
+Epoch 03/20 | Loss: 0.8095 | Val Acc: 81.63% | Time elapsed: 1.7 min
+ -> New best model saved (val: 81.63% and loss: 0.8095)
+Epoch 04/20 | Loss: 0.5845 | Val Acc: 83.67% | Time elapsed: 2.3 min
+ -> New best model saved (val: 83.67% and loss: 0.5845)
+Epoch 05/20 | Loss: 0.5796 | Val Acc: 87.76% | Time elapsed: 3.0 min
+ -> New best model saved (val: 87.76% and loss: 0.5796)
+Epoch 06/20 | Loss: 0.4276 | Val Acc: 81.63% | Time elapsed: 3.6 min
+Epoch 07/20 | Loss: 0.4047 | Val Acc: 85.71% | Time elapsed: 4.2 min
+Epoch 08/20 | Loss: 0.3308 | Val Acc: 85.71% | Time elapsed: 4.8 min
+Epoch 09/20 | Loss: 0.2451 | Val Acc: 85.71% | Time elapsed: 5.5 min
+Epoch 10/20 | Loss: 0.2229 | Val Acc: 87.76% | Time elapsed: 6.3 min
+ -> New best model saved (val: 87.76% and loss: 0.2229)
+Epoch 11/20 | Loss: 0.2068 | Val Acc: 95.92% | Time elapsed: 7.2 min
+ -> New best model saved (val: 95.92% and loss: 0.2068)
+Epoch 12/20 | Loss: 0.1773 | Val Acc: 87.76% | Time elapsed: 8.0 min
+Epoch 13/20 | Loss: 0.1812 | Val Acc: 87.76% | Time elapsed: 8.8 min
+Epoch 14/20 | Loss: 0.1801 | Val Acc: 83.67% | Time elapsed: 9.5 min
+Epoch 15/20 | Loss: 0.1299 | Val Acc: 89.80% | Time elapsed: 10.3 min
+Epoch 16/20 | Loss: 0.1097 | Val Acc: 91.84% | Time elapsed: 11.1 min
+Epoch 17/20 | Loss: 0.1636 | Val Acc: 81.63% | Time elapsed: 12.4 min
+Epoch 18/20 | Loss: 0.1467 | Val Acc: 89.80% | Time elapsed: 13.8 min
+Epoch 19/20 | Loss: 0.0979 | Val Acc: 87.76% | Time elapsed: 15.4 min
+Epoch 20/20 | Loss: 0.0750 | Val Acc: 93.88% | Time elapsed: 16.7 min
+
+Final test accuracy: 91.67%
+Confusion matrix (rows=true, cols=pred):
+[[ 4  0  0  0]
+ [ 0 10  0  0]
+ [ 0  2  2  0]
+ [ 0  0  0  6]]
+accuracy: 95.91836734693878
+ ---------------------------------------------------------
