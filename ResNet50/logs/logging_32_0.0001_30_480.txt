@@ -1,0 +1,53 @@
+
+---------------------------------------------------------
+
+Saving best model in: C:\School\3de ba\mach\taak\models\ResNet50_32_0.0001_30_480.pth
+Train samples: 316 | Val samples: 49 | Test samples: 24
+Epoch 01/30 | Loss: 1.4044 | Val Acc: 36.73% | Time elapsed: 0.4 min
+ -> New best model saved (val: 36.73% and loss: 1.4044)
+Epoch 02/30 | Loss: 1.3095 | Val Acc: 44.90% | Time elapsed: 0.8 min
+ -> New best model saved (val: 44.90% and loss: 1.3095)
+Epoch 03/30 | Loss: 1.1350 | Val Acc: 57.14% | Time elapsed: 1.2 min
+ -> New best model saved (val: 57.14% and loss: 1.1350)
+Epoch 04/30 | Loss: 0.8682 | Val Acc: 63.27% | Time elapsed: 1.6 min
+ -> New best model saved (val: 63.27% and loss: 0.8682)
+Epoch 05/30 | Loss: 0.5869 | Val Acc: 71.43% | Time elapsed: 2.0 min
+ -> New best model saved (val: 71.43% and loss: 0.5869)
+Epoch 06/30 | Loss: 0.4041 | Val Acc: 73.47% | Time elapsed: 2.4 min
+ -> New best model saved (val: 73.47% and loss: 0.4041)
+Epoch 07/30 | Loss: 0.2637 | Val Acc: 77.55% | Time elapsed: 2.8 min
+ -> New best model saved (val: 77.55% and loss: 0.2637)
+Epoch 08/30 | Loss: 0.1965 | Val Acc: 85.71% | Time elapsed: 3.2 min
+ -> New best model saved (val: 85.71% and loss: 0.1965)
+Epoch 09/30 | Loss: 0.1268 | Val Acc: 79.59% | Time elapsed: 3.7 min
+Epoch 10/30 | Loss: 0.0999 | Val Acc: 81.63% | Time elapsed: 4.1 min
+Epoch 11/30 | Loss: 0.0655 | Val Acc: 75.51% | Time elapsed: 4.5 min
+Epoch 12/30 | Loss: 0.0923 | Val Acc: 79.59% | Time elapsed: 4.9 min
+Epoch 13/30 | Loss: 0.0638 | Val Acc: 81.63% | Time elapsed: 5.3 min
+Epoch 14/30 | Loss: 0.0401 | Val Acc: 75.51% | Time elapsed: 5.7 min
+Epoch 15/30 | Loss: 0.0381 | Val Acc: 81.63% | Time elapsed: 6.1 min
+Epoch 16/30 | Loss: 0.0367 | Val Acc: 79.59% | Time elapsed: 6.5 min
+Epoch 17/30 | Loss: 0.0321 | Val Acc: 85.71% | Time elapsed: 6.9 min
+ -> New best model saved (val: 85.71% and loss: 0.0321)
+Epoch 18/30 | Loss: 0.0223 | Val Acc: 83.67% | Time elapsed: 7.3 min
+Epoch 19/30 | Loss: 0.0246 | Val Acc: 83.67% | Time elapsed: 7.7 min
+Epoch 20/30 | Loss: 0.0263 | Val Acc: 79.59% | Time elapsed: 8.1 min
+Epoch 21/30 | Loss: 0.0278 | Val Acc: 79.59% | Time elapsed: 8.5 min
+Epoch 22/30 | Loss: 0.0265 | Val Acc: 83.67% | Time elapsed: 8.9 min
+Epoch 23/30 | Loss: 0.0180 | Val Acc: 83.67% | Time elapsed: 9.3 min
+Epoch 24/30 | Loss: 0.0138 | Val Acc: 83.67% | Time elapsed: 9.7 min
+Epoch 25/30 | Loss: 0.0168 | Val Acc: 77.55% | Time elapsed: 10.1 min
+Epoch 26/30 | Loss: 0.0124 | Val Acc: 77.55% | Time elapsed: 10.6 min
+Epoch 27/30 | Loss: 0.0152 | Val Acc: 79.59% | Time elapsed: 11.0 min
+Epoch 28/30 | Loss: 0.0109 | Val Acc: 79.59% | Time elapsed: 11.4 min
+Epoch 29/30 | Loss: 0.0142 | Val Acc: 79.59% | Time elapsed: 11.9 min
+Epoch 30/30 | Loss: 0.0142 | Val Acc: 79.59% | Time elapsed: 12.3 min
+
+Final test accuracy: 91.67%
+Confusion matrix (rows=true, cols=pred):
+[[ 4  0  0  0]
+ [ 0 10  0  0]
+ [ 0  2  2  0]
+ [ 0  0  0  6]]
+accuracy: 85.71428571428571
+

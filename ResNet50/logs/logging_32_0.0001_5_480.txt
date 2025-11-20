@@ -1,0 +1,24 @@
+
+---------------------------------------------------------
+
+Saving best model in: C:\School\3de ba\mach\taak\models\ResNet50_32_0.0001_5_480.pth
+Train samples: 316 | Val samples: 49 | Test samples: 24
+Epoch 01/5 | Loss: 1.3869 | Val Acc: 36.73% | Time elapsed: 0.4 min
+ -> New best model saved (val: 36.73% and loss: 1.3869)
+Epoch 02/5 | Loss: 1.3070 | Val Acc: 51.02% | Time elapsed: 0.8 min
+ -> New best model saved (val: 51.02% and loss: 1.3070)
+Epoch 03/5 | Loss: 1.0772 | Val Acc: 57.14% | Time elapsed: 1.2 min
+ -> New best model saved (val: 57.14% and loss: 1.0772)
+Epoch 04/5 | Loss: 0.8315 | Val Acc: 71.43% | Time elapsed: 1.6 min
+ -> New best model saved (val: 71.43% and loss: 0.8315)
+Epoch 05/5 | Loss: 0.5876 | Val Acc: 75.51% | Time elapsed: 2.0 min
+ -> New best model saved (val: 75.51% and loss: 0.5876)
+
+Final test accuracy: 75.00%
+Confusion matrix (rows=true, cols=pred):
+[[4 0 0 0]
+ [4 6 0 0]
+ [0 1 2 1]
+ [0 0 0 6]]
+accuracy: 75.51020408163265
+
