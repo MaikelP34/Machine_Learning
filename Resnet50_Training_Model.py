@@ -23,11 +23,11 @@ img_size = 480
 
 num_classes = 4
 
-#base_url = "C:\\School\\3de ba\\mach\\taak\\dataset" #KOBE
-base_url = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\dataset" #Maikel
+base_url = "C:\\School\\3de ba\\mach\\taak\\dataset" #KOBE
+#base_url = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\dataset" #Maikel
 
-#model_path = f"C:\\School\\3de ba\\mach\\taak\\models" #KOBE
-model_path = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\models" #Maikel
+model_path = f"C:\\School\\3de ba\\mach\\taak\\models" #KOBE
+#model_path = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\models" #Maikel
 
 train_data_url = os.path.join(base_url, "train", "images")
 valid_data_url = os.path.join(base_url, "valid", "images")
@@ -192,6 +192,7 @@ def custom_print(log_file, message_to_print):
 # ====================== MAIN ======================
 def main():
     # Device
+    custom_print(log_path, "\n---------------------------------------------------------\n")
     device = pt.device("cuda" if pt.cuda.is_available() else "cpu")
     print("Using device:", device)
 
@@ -284,7 +285,7 @@ def main():
 
     print_graph(data_path, train_losses, val_accuracies)
 
-    custom_print(log_path, f"accuracy: {best_val}\n ---------------------------------------------------------")
+    custom_print(log_path, f"accuracy: {best_val}\n")
 
 
 if __name__ == "__main__":
