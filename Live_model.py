@@ -12,7 +12,7 @@ num_classes = 4
 img_size = 480
 
 #model_path = "C:\\School\\3de ba\\mach\\taak\\models\\E_ResNet50_4_0.0002_200_480.pth"    # <-- pas dit aan
-model_path = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\models\\ResNet50_2_0.0001_20_480.pth" #Maikel
+model_path = "C:\\Users\\maike\\OneDrive\\Documents\\School\\Unif\\ML_2526\\Project\\models\\ResNet50_4_0.0002_20_480.pth" #Maikel
 
 labels = ["class_0", "class_1", "class_2", "class_3"]  # <-- vul in!
 

@@ -1,0 +1,39 @@
+Saving best model in: C:\Users\maike\OneDrive\Documents\School\Unif\ML_2526\Project\models\ResNet50_32_0.0002_20_480.pth
+Train samples: 316 | Val samples: 49 | Test samples: 24
+Epoch 01/20 | Loss: 1.3781 | Val Acc: 32.65% | Time elapsed: 0.7 min
+ -> New best model saved (val: 32.65% and loss: 1.3781)
+Epoch 02/20 | Loss: 1.1188 | Val Acc: 61.22% | Time elapsed: 1.3 min
+ -> New best model saved (val: 61.22% and loss: 1.1188)
+Epoch 03/20 | Loss: 0.7445 | Val Acc: 73.47% | Time elapsed: 2.0 min
+ -> New best model saved (val: 73.47% and loss: 0.7445)
+Epoch 04/20 | Loss: 0.4871 | Val Acc: 73.47% | Time elapsed: 2.6 min
+ -> New best model saved (val: 73.47% and loss: 0.4871)
+Epoch 05/20 | Loss: 0.2971 | Val Acc: 73.47% | Time elapsed: 3.4 min
+ -> New best model saved (val: 73.47% and loss: 0.2971)
+Epoch 06/20 | Loss: 0.2085 | Val Acc: 71.43% | Time elapsed: 4.4 min
+Epoch 07/20 | Loss: 0.1458 | Val Acc: 69.39% | Time elapsed: 5.4 min
+Epoch 08/20 | Loss: 0.1359 | Val Acc: 71.43% | Time elapsed: 7.5 min
+Epoch 09/20 | Loss: 0.0701 | Val Acc: 83.67% | Time elapsed: 8.9 min
+ -> New best model saved (val: 83.67% and loss: 0.0701)
+Epoch 10/20 | Loss: 0.0893 | Val Acc: 73.47% | Time elapsed: 9.7 min
+Epoch 11/20 | Loss: 0.0648 | Val Acc: 79.59% | Time elapsed: 10.3 min
+Epoch 12/20 | Loss: 0.0766 | Val Acc: 75.51% | Time elapsed: 11.0 min
+Epoch 13/20 | Loss: 0.0522 | Val Acc: 85.71% | Time elapsed: 12.1 min
+ -> New best model saved (val: 85.71% and loss: 0.0522)
+Epoch 14/20 | Loss: 0.0395 | Val Acc: 77.55% | Time elapsed: 13.2 min
+Epoch 15/20 | Loss: 0.0255 | Val Acc: 83.67% | Time elapsed: 14.2 min
+Epoch 16/20 | Loss: 0.0440 | Val Acc: 85.71% | Time elapsed: 15.3 min
+ -> New best model saved (val: 85.71% and loss: 0.0440)
+Epoch 17/20 | Loss: 0.0350 | Val Acc: 83.67% | Time elapsed: 16.4 min
+Epoch 18/20 | Loss: 0.0384 | Val Acc: 81.63% | Time elapsed: 17.6 min
+Epoch 19/20 | Loss: 0.0373 | Val Acc: 79.59% | Time elapsed: 18.6 min
+Epoch 20/20 | Loss: 0.0267 | Val Acc: 79.59% | Time elapsed: 19.2 min
+
+Final test accuracy: 87.50%
+Confusion matrix (rows=true, cols=pred):
+[[ 3  1  0  0]
+ [ 0 10  0  0]
+ [ 0  2  2  0]
+ [ 0  0  0  6]]
+accuracy: 85.71428571428571
+ ---------------------------------------------------------
